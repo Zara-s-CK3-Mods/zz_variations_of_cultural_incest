@@ -1,0 +1,7 @@
+﻿incest_heritage_dynasty_modifier = {
+	icon = health_positive
+	health = 0.25
+	positive_inactive_inheritance_chance = 0.4
+	positive_random_genetic_chance = 4 # This will for instance cause a .2% chance to become 1%
+	inbreeding_chance = -0.5
+}
