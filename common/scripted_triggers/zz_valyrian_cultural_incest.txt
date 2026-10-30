@@ -1,4 +1,3 @@
-#two characters could potentially marry (does NOT check that they're unmarried)
 could_marry_character_trigger = {
 	save_temporary_scope_as = can_marry_check
 	can_marry_common_trigger = yes
@@ -21,62 +20,37 @@ could_marry_character_trigger = {
 	trigger_if = {
 		limit = { NOT = { is_courtier_of = $CHARACTER$ } } #If you're someone's courtier, your liege can marry you anyway
 		OR = {
-            faith = {
-                faith_allows_marriage_consanguinity_trigger = {
-                    CHARACTER_1 = scope:can_marry_check
-                    CHARACTER_2 = $CHARACTER$
-                }
-                #faith_hostility_level = {
-                #	target = $CHARACTER$.faith
-                #	value < faith_hostility_prevents_marriage_level
-                #}
-            }
-            culture = {
-				has_cultural_parameter = consanguinity_unrestricted_marriage
+			rite = {
+				rite_allows_marriage_consanguinity_trigger = {
+					CHARACTER_1 = scope:can_marry_check
+					CHARACTER_2 = $CHARACTER$
+				}
+				#faith_hostility_level = {
+				#	target = $CHARACTER$.faith
+				#	value < faith_hostility_prevents_marriage_level
+				#}
 			}
-			dynasty ?= {
-				has_dynasty_modifier = incest_heritage_dynasty_modifier
-			}
-        }
+			## Incest Cultural Tradition
+			culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
+			dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
+		}
 	}
 	trigger_if = {
 		limit = { $CHARACTER$ = { NOT = { is_courtier_of = scope:can_marry_check } } } #If you're someone's courtier, your liege can marry you anyway
 		OR = {
-            $CHARACTER$.faith = {
-                faith_allows_marriage_consanguinity_trigger = {
-                    CHARACTER_1 = scope:can_marry_check
-                    CHARACTER_2 = $CHARACTER$
-                }
-                #faith_hostility_level = {
-                #	target = scope:can_marry_check.faith
-                #	value < faith_hostility_prevents_marriage_level
-                #}
-            }
-            $CHARACTER$.culture = {
-				has_cultural_parameter = consanguinity_unrestricted_marriage
-			}
-			$CHARACTER$.dynasty ?= {
-				has_dynasty_modifier = incest_heritage_dynasty_modifier
-			}
-        }
-	}
-	trigger_if = {
-		limit = {
-			any_close_or_extended_family_member = {
-				any_spouse = { this = $CHARACTER$ }
-			}
-		}
-		faith = { has_doctrine = doctrine_consanguinity_unrestricted }
-		$CHARACTER$ = {
-			faith = { has_doctrine = doctrine_consanguinity_unrestricted }
-			NOT = {
-				any_spouse = {
-					is_close_or_extended_family_of = scope:can_marry_check
-					NOT = {
-						faith = { has_doctrine = doctrine_consanguinity_unrestricted }
-					}
+			$CHARACTER$.rite = {
+				rite_allows_marriage_consanguinity_trigger = {
+					CHARACTER_1 = scope:can_marry_check
+					CHARACTER_2 = $CHARACTER$
 				}
+				#faith_hostility_level = {
+				#	target = scope:can_marry_check.faith
+				#	value < faith_hostility_prevents_marriage_level
+				#}
 			}
+			## Incest Cultural Tradition
+			$CHARACTER$.culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
+			$CHARACTER$.dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
 		}
 	}
 	# Cannot marry self
@@ -85,7 +59,6 @@ could_marry_character_trigger = {
 	}
 }
 
-# Same trigger as above with the exception of the recent divorce trigger
 can_take_as_concubine_character_trigger = {
 	save_temporary_scope_as = can_marry_check
 	can_marry_common_trigger = yes
@@ -101,71 +74,63 @@ can_take_as_concubine_character_trigger = {
 	trigger_if = {
 		limit = { NOT = { is_courtier_of = $CHARACTER$ } } #If you're someone's courtier, your liege can marry you anyway
 		OR = {
-            faith = {
-                faith_allows_marriage_consanguinity_trigger = {
-                    CHARACTER_1 = scope:can_marry_check
-                    CHARACTER_2 = $CHARACTER$
-                }
-                #faith_hostility_level = {
-                #	target = $CHARACTER$.faith
-                #	value < faith_hostility_prevents_marriage_level
-                #}
-            }
-            culture = {
-				has_cultural_parameter = consanguinity_unrestricted_marriage
+			rite = {
+				rite_allows_marriage_consanguinity_trigger = {
+					CHARACTER_1 = scope:can_marry_check
+					CHARACTER_2 = $CHARACTER$
+				}
+				#faith_hostility_level = {
+				#	target = $CHARACTER$.faith
+				#	value < faith_hostility_prevents_marriage_level
+				#}
 			}
-			dynasty ?= {
-				has_dynasty_modifier = incest_heritage_dynasty_modifier
-			}
-        }
+			## Incest Cultural Tradition
+			culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
+			dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
+		}
 	}
 	trigger_if = {
 		limit = { $CHARACTER$ = { NOT = { is_courtier_of = scope:can_marry_check } } } #If you're someone's courtier, your liege can marry you anyway
 		OR = {
-            $CHARACTER$.faith = {
-                faith_allows_marriage_consanguinity_trigger = {
-                    CHARACTER_1 = scope:can_marry_check
-                    CHARACTER_2 = $CHARACTER$
-                }
-                #faith_hostility_level = {
-                #	target = scope:can_marry_check.faith
-                #	value < faith_hostility_prevents_marriage_level
-                #}
-            }
-            $CHARACTER$.culture = {
-				has_cultural_parameter = consanguinity_unrestricted_marriage
+			$CHARACTER$.rite = {
+				rite_allows_marriage_consanguinity_trigger = {
+					CHARACTER_1 = scope:can_marry_check
+					CHARACTER_2 = $CHARACTER$
+				}
+				#faith_hostility_level = {
+				#	target = scope:can_marry_check.faith
+				#	value < faith_hostility_prevents_marriage_level
+				#}
 			}
-			$CHARACTER$.dynasty ?= {
-				has_dynasty_modifier = incest_heritage_dynasty_modifier
-			}
-        }
+			## Incest Cultural Tradition
+			$CHARACTER$.culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
+			$CHARACTER$.dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
+		}
 	}
 	NOT = {
 		scope:can_marry_check = { is_spouse_of = $CHARACTER$ }
 	}
 }
 
-
-relation_with_character_is_incestuous_in_faith_trigger = {	
+relation_with_character_is_incestuous_in_rite_trigger = {
+	## Incest Cultural Tradition: never incestuous for these cultures and dynasties
+	NOT = { culture = { has_cultural_parameter = consanguinity_unrestricted_marriage } }
+	NOT = { dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier } }
 	OR = {
-		NOT = { culture = { has_cultural_parameter = consanguinity_unrestricted_marriage } }
-		NOT = { dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }}
 		# doctrine_consanguinity_dynastic; not within the same descent group
 		AND = {
-			$FAITH$ = { has_doctrine = doctrine_consanguinity_dynastic }
-			OR = {
-				is_close_or_extended_family_of = $CHARACTER$
-				dynasty = $CHARACTER$.dynasty
-			}
-		}	
+			$RITE$ = { rite_has_parameter = consanguinity_restricted_dynastic_marriage }
+			is_lowborn = no
+			$CHARACTER$.dynasty ?= dynasty
+		}
 		#doctrine_consanguinity_restricted; absolutely no family business
 		AND = {
-			$FAITH$ = { has_doctrine = doctrine_consanguinity_restricted }
+			$RITE$ = { rite_has_parameter = consanguinity_restricted_close_kin_incest }
 			is_close_or_extended_family_of = $CHARACTER$ #[parents, children, siblings, grandparents, grandchildren, cousins, uncles, aunts, nephews, nieces]
 		}
 		#doctrine_consanguinity_cousins; the only acceptable incest is with your cousin
 		AND = {
-			$FAITH$ = { has_doctrine = doctrine_consanguinity_cousins }
+			$RITE$ = { rite_has_parameter = consanguinity_cousins_marriage }
 			OR = {
 	            is_close_family_of = $CHARACTER$ #[parents, children, siblings, grandparents, grandchildren]
 	            is_uncle_or_aunt_of = $CHARACTER$
@@ -174,7 +139,7 @@ relation_with_character_is_incestuous_in_faith_trigger = {
 		}
 		#doctrine_consanguinity_aunt_nephew_and_uncle_niece; extended family is ok
 		AND = {
-			$FAITH$ = { has_doctrine = doctrine_consanguinity_aunt_nephew_and_uncle_niece }
+			$RITE$ = { rite_has_parameter = consanguinity_aunt_nephew_and_uncle_niece_marriage }
 			is_close_family_of = $CHARACTER$
 		}
 		#doctrine_consanguinity_unrestricted; all forms of incest is acceptable
@@ -186,74 +151,39 @@ secret_incest_is_valid_trigger = {
 		is_adult = yes
 		NOT = {
 			has_trait = incestuous
+		}
+		## Incest Cultural Tradition
+		NOR = {
 			culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
 			culture = { has_cultural_parameter = consanguinity_siblings_marriage }
-			dynasty ?= {
-				has_dynasty_modifier = incest_heritage_dynasty_modifier
-			}
+			dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
 		}
 	}
 }
 
 secret_incest_is_shunned_trigger = {
 	$OWNER$ = {
-		#AGOT Modified, special rules for agot_allow_adelphogamous_incest
-		# OR = {
-		# 	faith = { NOT = { has_doctrine_parameter = allows_unrestricted_marriage } }
-		# 	any_liege_or_above = { faith = { NOT = { has_doctrine_parameter = allows_unrestricted_marriage } } }
-		# }
-		trigger_if = {
-			limit = {
-				OR = {
+		## Incest Cultural Tradition
+		NOR = {
+			culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
+			culture = { has_cultural_parameter = consanguinity_siblings_marriage }
+			dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
+		}
+		OR = {
+			NOT = {
+				rite = { rite_has_parameter = allows_unrestricted_marriage }
+			}
+			any_liege_or_above = {
+				## Incest Cultural Tradition
+				NOR = {
 					culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
 					culture = { has_cultural_parameter = consanguinity_siblings_marriage }
+					dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
 				}
-			}
-			OR = {
-				faith = {
-					NOT = {
-						has_doctrine_parameter = allows_unrestricted_marriage
-					}
+				NOT = {
+					rite = { rite_has_parameter = allows_unrestricted_marriage }
 				}
-				
-				culture = { 
-					NOT = {
-						has_cultural_parameter = consanguinity_unrestricted_marriage
-						has_cultural_parameter = consanguinity_siblings_marriage
-					}
-				}
-				dynasty ?= {
-					NOT = {
-						has_dynasty_modifier = incest_heritage_dynasty_modifier
-					}
-				}
-				any_liege_or_above = {
-					faith = {
-						NOT = {
-							has_doctrine_parameter = allows_unrestricted_marriage
-						}
-					}
-					culture = { 
-						NOT = {
-							has_cultural_parameter = consanguinity_unrestricted_marriage
-							has_cultural_parameter = consanguinity_siblings_marriage
-						}
-					}
-					dynasty ?= {
-						NOT = {
-							has_dynasty_modifier = incest_heritage_dynasty_modifier
-						}
-					}
-				}
-			}
-		}
-
-		trigger_else = {
-			OR = {
-				faith = { NOT = { has_doctrine_parameter = allows_unrestricted_marriage } }
-				any_liege_or_above = { faith = { NOT = { has_doctrine_parameter = allows_unrestricted_marriage } } }
 			}
 		}
 	}
 }
-

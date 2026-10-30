@@ -26,10 +26,6 @@
 
 	parameters = {
 		consanguinity_unrestricted_marriage = yes
-		consanguinity_unrestricted_incest = yes
-		allows_cousin_marriage = yes
-		allows_aunt_nephew_and_uncle_niece_marriage = yes
-		allows_unrestricted_marriage = yes
 	}
 	
 	cost = {
@@ -42,7 +38,7 @@
 			limit = {
 				scope:character = {
 					exists = scope:lover
-					relation_with_character_is_incestuous_in_my_or_lieges_faith_trigger = { CHARACTER = scope:lover }
+					relation_with_character_is_incestuous_in_my_or_lieges_rite_trigger = { CHARACTER = scope:lover }
 				}
 			}
 			multiply = 20
@@ -78,10 +74,6 @@ tradition_zz_valyrian_sibling_incest = {
 
 	parameters = {
 		consanguinity_siblings_marriage = yes
-		consanguinity_unrestricted_incest = yes
-		allows_cousin_marriage = yes
-		allows_aunt_nephew_and_uncle_niece_marriage = yes
-		allows_unrestricted_marriage = yes
 	}
 	
 	cost = {
@@ -94,7 +86,7 @@ tradition_zz_valyrian_sibling_incest = {
 			limit = {
 				scope:character = {
 					exists = scope:lover
-					relation_with_character_is_incestuous_in_my_or_lieges_faith_trigger = { CHARACTER = scope:lover }
+					relation_with_character_is_incestuous_in_my_or_lieges_rite_trigger = { CHARACTER = scope:lover }
 				}
 			}
 			multiply = 20
