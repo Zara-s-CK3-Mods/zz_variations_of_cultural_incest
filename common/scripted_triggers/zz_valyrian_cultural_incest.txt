@@ -33,6 +33,10 @@ could_marry_character_trigger = {
 			## Incest Cultural Tradition
 			culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
 			dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
+			AND = {
+				culture = { has_cultural_parameter = consanguinity_siblings_marriage }
+				is_sibling_of = $CHARACTER$
+			}
 		}
 	}
 	trigger_if = {
@@ -51,6 +55,10 @@ could_marry_character_trigger = {
 			## Incest Cultural Tradition
 			$CHARACTER$.culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
 			$CHARACTER$.dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
+			AND = {
+				$CHARACTER$.culture = { has_cultural_parameter = consanguinity_siblings_marriage }
+				$CHARACTER$ = { is_sibling_of = scope:can_marry_check }
+			}
 		}
 	}
 	# Cannot marry self
@@ -87,6 +95,10 @@ can_take_as_concubine_character_trigger = {
 			## Incest Cultural Tradition
 			culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
 			dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
+			AND = {
+				culture = { has_cultural_parameter = consanguinity_siblings_marriage }
+				is_sibling_of = $CHARACTER$
+			}
 		}
 	}
 	trigger_if = {
@@ -105,6 +117,10 @@ can_take_as_concubine_character_trigger = {
 			## Incest Cultural Tradition
 			$CHARACTER$.culture = { has_cultural_parameter = consanguinity_unrestricted_marriage }
 			$CHARACTER$.dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier }
+			AND = {
+				$CHARACTER$.culture = { has_cultural_parameter = consanguinity_siblings_marriage }
+				$CHARACTER$ = { is_sibling_of = scope:can_marry_check }
+			}
 		}
 	}
 	NOT = {
@@ -116,6 +132,10 @@ relation_with_character_is_incestuous_in_rite_trigger = {
 	## Incest Cultural Tradition: never incestuous for these cultures and dynasties
 	NOT = { culture = { has_cultural_parameter = consanguinity_unrestricted_marriage } }
 	NOT = { dynasty ?= { has_dynasty_modifier = incest_heritage_dynasty_modifier } }
+	NOT = {
+		culture = { has_cultural_parameter = consanguinity_siblings_marriage }
+		is_sibling_of = $CHARACTER$
+	}
 	OR = {
 		# doctrine_consanguinity_dynastic; not within the same descent group
 		AND = {
