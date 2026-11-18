@@ -1,4 +1,4 @@
-could_marry_character_trigger = {
+﻿could_marry_character_trigger = {
 	save_temporary_scope_as = can_marry_check
 	can_marry_common_trigger = yes
 	$CHARACTER$ = { can_marry_common_trigger = yes }
